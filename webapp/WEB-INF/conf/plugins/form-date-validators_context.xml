@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- DAO -->
+	<bean id="form-date-validators.comparatorDAO"  class="fr.paris.lutece.plugins.form.modules.datevalidators.business.ComparatorDAO" />
+	<bean id="form-date-validators.operatorDAO"  class="fr.paris.lutece.plugins.form.modules.datevalidators.business.OperatorDAO" />
+	<bean id="form-date-validators.unitDAO"  class="fr.paris.lutece.plugins.form.modules.datevalidators.business.UnitDAO" />
+	<bean id="form-date-validators.ruleDAO"  class="fr.paris.lutece.plugins.form.modules.datevalidators.business.RuleDAO" />
+	<bean id="form-date-validators.dateCalculatedDAO"  class="fr.paris.lutece.plugins.form.modules.datevalidators.business.DateCalculatedDAO" />
+	
+	<!-- Validator -->
+	<bean id="form-date-validators.validator" class="fr.paris.lutece.plugins.form.modules.datevalidators.service.validator.DateValidator" />
+</beans>

@@ -1,0 +1,42 @@
+<div class="content-box">
+	<h2>#i18n{module.form.datevalidators.modifyRule.title}</h2>
+	<form method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoModifyRule.jsp">
+		<p>
+			<label for="id_entry1">#i18n{module.form.datevalidators.modifyRule.entry.labelEntry1} * :</label>
+			<select name="id_entry1">
+				<option value="-1"></option>
+				<#list entry_list as entry>
+					<#if entry.idEntry == rule.idEntry1>
+						<option value="${entry.idEntry}" selected="selected">${entry.idEntry} - ${entry.title}</option>
+					<#else>
+						<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+					</#if>
+				</#list>
+			</select>
+		</p>
+		<p>
+			<label for="id_comparator">#i18n{module.form.datevalidators.modifyRule.labelComparator} * :</label>
+			<@combo name="id_comparator" items=comparator_list default_value=rule.idComparator />
+		</p>
+		<p>
+			<label for="id_entry2">#i18n{module.form.datevalidators.modifyRule.entry.labelEntry2} * :</label>
+			<select name="id_entry2">
+				<option value="-1"></option>
+				<#list entry_list as entry>
+					<#if entry.idEntry == rule.idEntry2>
+						<option value="${entry.idEntry}" selected="selected">${entry.idEntry} - ${entry.title}</option>
+					<#else>
+						<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+					</#if>
+				</#list>
+			</select>
+		</p>
+		<p>
+			<input type="hidden" name="id_rule" value="${rule.idRule}" />
+			<input type="hidden" name="id_form" value="${rule.idForm}" />
+			<input type="hidden" name="type" value="${type}" />
+			<input class="button" type="submit" name="save" value="#i18n{module.form.datevalidators.modifyRule.buttonSave}" />
+			<input class="button" type="submit" name="cancel" value="#i18n{module.form.datevalidators.modifyRule.buttonCancel}" />
+		</p>
+	</form>
+</div>

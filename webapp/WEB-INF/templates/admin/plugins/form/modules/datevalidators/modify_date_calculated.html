@@ -1,0 +1,38 @@
+<div class="content-box">
+	<h2>#i18n{module.form.datevalidators.modifyDateCalculated.title}</h2>
+	<form method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoModifyDateCalculated.jsp">
+		<p>
+			<label for="date_reference">#i18n{module.form.datevalidators.modifyDateCalculated.labelDateReference} * :</label>
+			<input type="text" name="date_reference" id="date_reference" size="10" maxlength="10" value="${date_calculated.dateReference?date}" />
+		</p>
+		<p>
+			<label for="id_operator">#i18n{module.form.datevalidators.modifyDateCalculated.labelOperator} * :</label>
+			<@combo name="id_operator" items=operator_list default_value=date_calculated.operator.idOperator />
+		</p>
+		<p>
+			<label for="number">#i18n{module.form.datevalidators.modifyDateCalculated.labelNumber} * :</label>
+			<input type="text" name="number" size="10" maxlength="10" value="${date_calculated.number}" />
+		</p>
+		<p>
+			<label for="id_unit">#i18n{module.form.datevalidators.modifyDateCalculated.labelUnit} * :</label>
+			<select name="id_unit">
+				<option value="-1"></option>
+				<#list unit_list as unit>
+					<#if unit.code == date_calculated.unit.idUnit?string>
+						<option value="${unit.code}" selected="selected">#i18n{${unit.name}}</option>
+					<#else>
+						<option value="${unit.code}">#i18n{${unit.name}}</option>
+					</#if>
+				</#list>
+			</select>
+		</p>
+		<p>
+			<input type="hidden" name="id_date_calculated" value="${date_calculated.idDateCalculated}" />
+			<input type="hidden" name="id_form" value="${id_form}" />
+			<input class="button" type="submit" name="save" value="#i18n{module.form.datevalidators.modifyDateCalculated.buttonSave}" />
+			<input class="button" type="submit" name="cancel" value="#i18n{module.form.datevalidators.modifyDateCalculated.buttonCancel}" />
+		</p>
+	</form>
+</div>
+
+<@getDatePicker idField="date_reference" language=locale />

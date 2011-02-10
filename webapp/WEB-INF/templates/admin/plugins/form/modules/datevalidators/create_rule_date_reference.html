@@ -1,0 +1,30 @@
+<div class="content-box">
+	<h2>#i18n{module.form.datevalidators.createRule.title}</h2>
+	<form method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoCreateRule.jsp">
+		<p>
+			<label for="id_entry1">#i18n{module.form.datevalidators.createRule.dateReference.labelEntry} * :</label>
+			<select name="id_entry1">
+				<option value="-1"></option>
+				<#list entry_list as entry>
+					<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+				</#list>
+			</select>
+		</p>
+		<p>
+			<label for="id_comparator">#i18n{module.form.datevalidators.createRule.labelComparator} * :</label>
+			<@combo name="id_comparator" items=comparator_list default_value=-1 />
+		</p>
+		<p>
+			<label for="date_reference">#i18n{module.form.datevalidators.createRule.dateReference.labelDateReference} * :</label>
+			<input type="text" name="date_reference" id="date_reference" size="10" maxlength="10" value="" />
+		</p>
+		<p>
+			<input type="hidden" name="id_form" value="${id_form}" />
+			<input type="hidden" name="type" value="${type}" />
+			<input class="button" type="submit" name="save" value="#i18n{module.form.datevalidators.createRule.buttonSave}" />
+			<input class="button" type="submit" name="back" value="#i18n{module.form.datevalidators.createRule.buttonBack}" />
+		</p>
+	</form>
+</div>
+
+<@getDatePicker idField="date_reference" language=locale />
