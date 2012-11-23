@@ -7,81 +7,77 @@
     </a>
 </#macro>
 
-<div class="content-box">
-	<h2>#i18n{module.form.datevalidators.manageDateCalculated.title}</h2>
-	
-	<form method="post" action="jsp/admin/plugins/form/modules/datevalidators/ManageDateCalculated.jsp">
-	    <@pagination paginator = paginator />
-	    #i18n{module.form.datevalidators.manageDateCalculated.labelItemsPerPage} :
-	    <select name="items_per_page">
-	        <#list [ "10" , "20" , "50" , "100" ] as nb>
-	            <#if nb_items_per_page = nb>
-	            	<option value="${nb}" selected="selected">${nb}</option>
-	            <#else>
-	            	<option value="${nb}">${nb}</option>
-	            </#if>
-	        </#list>
-	    </select>
-	    <input type="hidden" name="id_form" value="${id_form}" />
-	    <input type="hidden" name="sorted_attribute_name" value="${sorted_attribute_name!}" />
-    	<input type="hidden" name="asc_sort" value="${asc_sort!}" />
-	    <input class="button" type="submit" value="#i18n{module.form.datevalidators.manageDateCalculated.buttonItemsPerPage}" />
-	</form>
-	
-	<table>
-		<tr>
-			<th>
-				#i18n{module.form.datevalidators.manageDateCalculated.rowDateReference}
-				<@action_sort jsp_url="jsp/admin/plugins/form/modules/datevalidators/ManageDateCalculated.jsp?id_form=${id_form}" attribute="dateReference" />
-			</th>
-			<th>#i18n{module.form.datevalidators.manageDateCalculated.rowOperator}</th>
-			<th>
-				#i18n{module.form.datevalidators.manageDateCalculated.rowNumber}
-				<@action_sort jsp_url="jsp/admin/plugins/form/modules/datevalidators/ManageDateCalculated.jsp?id_form=${id_form}" attribute="number" />
-			</th>
-			<th>#i18n{module.form.datevalidators.manageDateCalculated.rowUnit}</th>
-			<th>#i18n{module.form.datevalidators.manageDateCalculated.rowActions}</th>
-		</tr>
-		<#list date_calculated_list as dc>
-			<tr>
-				<td>${dc.dateReference?date}</td>
-				<td>${dc.operator.name}</td>
-				<td>${dc.number}</td>
-				<td>#i18n{${dc.unit.name}}</td>
-				<td>
-					<#if permission_modify>
-						<a href="jsp/admin/plugins/form/modules/datevalidators/ModifyDateCalculated.jsp?id_form=${id_form}&id_date_calculated=${dc.idDateCalculated}">
-			            	<img src="images/admin/skin/actions/modify.png"
-			            		alt="#i18n{module.form.datevalidators.manageDateCalculated.altModify}"
-			            		title="#i18n{module.form.datevalidators.manageDateCalculated.altModify}" />
-			            </a>
-			        </#if>
-		            
-		            <#if permission_delete>
-			            <a href="jsp/admin/plugins/form/modules/datevalidators/ConfirmRemoveDateCalculated.jsp?id_form=${id_form}&id_date_calculated=${dc.idDateCalculated}">
-				        	<img src="images/admin/skin/actions/delete.png"
-				        		alt="#i18n{module.form.datevalidators.manageDateCalculated.altDelete}"
-				        		title="#i18n{module.form.datevalidators.manageDateCalculated.altDelete}" />
-				        </a>
-				    </#if>
-				</td>
-			</tr>
-		</#list>
-	</table>
-	
-	<br />
-	
-	<#if permission_create>
-		<form method="post" action="jsp/admin/plugins/form/modules/datevalidators/CreateDateCalculated.jsp?id_form=${id_form}">
-			<p>
-				<input class="button" type="submit" value="#i18n{module.form.datevalidators.manageDateCalculated.buttonCreate}" />
-			</p>
-		</form>
-	</#if>
-	
-	<form method="post" action="jsp/admin/plugins/form/ManageValidator.jsp?id_form=${id_form}">
-		<p>
-			<input class="button" type="submit" value="#i18n{module.form.datevalidators.manageDateCalculated.buttonBack}" />
-		</p>
-	</form>
+<div class="row-fluid">
+	<div class="span12">
+		<fieldset>
+			<legend>#i18n{module.form.datevalidators.manageDateCalculated.title}
+			<#if permission_create>
+				<form method="post" class="form-inline pull-right" action="jsp/admin/plugins/form/modules/datevalidators/CreateDateCalculated.jsp?id_form=${id_form}">
+					<button class="btn btn-small btn-primary" type="submit">
+						<i class="icon-plus icon-white"></i>&nbsp;#i18n{module.form.datevalidators.manageDateCalculated.buttonCreate}
+					</button>
+				</form>
+			</#if>
+				<form method="post" class="form-inline spaced pull-right" action="jsp/admin/plugins/form/ManageValidator.jsp?id_form=${id_form}">
+					
+					<button class="btn btn-small" type="submit">
+						<i class="icon-remove-circle"></i>&nbsp;#i18n{module.form.datevalidators.manageDateCalculated.buttonBack}
+					</button>
+				</form>
+			</legend>
+			<@paginationAdmin paginator=paginator combo=1/>
+			<!-- <form method="post" action="jsp/admin/plugins/form/modules/datevalidators/ManageDateCalculated.jsp">
+				#i18n{module.form.datevalidators.manageDateCalculated.labelItemsPerPage} :
+				<select name="items_per_page">
+					<#list [ "10" , "20" , "50" , "100" ] as nb>
+						<#if nb_items_per_page = nb>
+							<option value="${nb}" selected="selected">${nb}</option>
+						<#else>
+							<option value="${nb}">${nb}</option>
+						</#if>
+					</#list>
+				</select>
+				<input type="hidden" name="id_form" value="${id_form}" />
+				<input type="hidden" name="sorted_attribute_name" value="${sorted_attribute_name!}" />
+				<input type="hidden" name="asc_sort" value="${asc_sort!}" />
+				<input class="button" type="submit" value="#i18n{module.form.datevalidators.manageDateCalculated.buttonItemsPerPage}" />
+			</form>-->
+			
+			<table class="table table-striped table-condensed">
+				<tr>
+					<th>
+						#i18n{module.form.datevalidators.manageDateCalculated.rowDateReference}
+						<@action_sort jsp_url="jsp/admin/plugins/form/modules/datevalidators/ManageDateCalculated.jsp?id_form=${id_form}" attribute="dateReference" />
+					</th>
+					<th>#i18n{module.form.datevalidators.manageDateCalculated.rowOperator}</th>
+					<th>
+						#i18n{module.form.datevalidators.manageDateCalculated.rowNumber}
+						<@action_sort jsp_url="jsp/admin/plugins/form/modules/datevalidators/ManageDateCalculated.jsp?id_form=${id_form}" attribute="number" />
+					</th>
+					<th>#i18n{module.form.datevalidators.manageDateCalculated.rowUnit}</th>
+					<th>#i18n{module.form.datevalidators.manageDateCalculated.rowActions}</th>
+				</tr>
+				<#list date_calculated_list as dc>
+					<tr>
+						<td>${dc.dateReference?date}</td>
+						<td>${dc.operator.name}</td>
+						<td>${dc.number}</td>
+						<td>#i18n{${dc.unit.name}}</td>
+						<td>
+							<#if permission_modify>
+								<a class="btn btn-small btn-primary" title="#i18n{module.form.datevalidators.manageDateCalculated.altModify}" href="jsp/admin/plugins/form/modules/datevalidators/ModifyDateCalculated.jsp?id_form=${id_form}&id_date_calculated=${dc.idDateCalculated}">
+									<i class="icon-edit icon-white"></i>
+								</a>
+							</#if>
+							<#if permission_delete>
+								<a class="btn btn-small btn-danger" title="#i18n{module.form.datevalidators.manageDateCalculated.altDelete}"href="jsp/admin/plugins/form/modules/datevalidators/ConfirmRemoveDateCalculated.jsp?id_form=${id_form}&id_date_calculated=${dc.idDateCalculated}">
+									<i class="icon-trash icon-white"></i>
+								</a>
+							</#if>
+						</td>
+					</tr>
+				</#list>
+			</table>
+		</fieldset>	
+	</div>
 </div>
