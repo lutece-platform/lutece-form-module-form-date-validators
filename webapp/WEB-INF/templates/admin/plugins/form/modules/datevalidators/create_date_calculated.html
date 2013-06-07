@@ -1,33 +1,53 @@
-<div class="content-box">
-	<h2>#i18n{module.form.datevalidators.createDateCalculated.title}</h2>
-	<form method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoCreateDateCalculated.jsp">
-		<p>
-			<label for="date_reference">#i18n{module.form.datevalidators.createDateCalculated.labelDateReference} * :</label>
-			<input type="text" name="date_reference" id="date_reference" size="10" maxlength="10" value="" />
-		</p>
-		<p>
-			<label for="id_operator">#i18n{module.form.datevalidators.createDateCalculated.labelOperator} * :</label>
-			<@combo name="id_operator" items=operator_list default_value=-1 />
-		</p>
-		<p>
-			<label for="number">#i18n{module.form.datevalidators.createDateCalculated.labelNumber} * :</label>
-			<input type="text" name="number" size="10" maxlength="10" value="" />
-		</p>
-		<p>
-			<label for="id_unit">#i18n{module.form.datevalidators.createDateCalculated.labelUnit} * :</label>
-			<select name="id_unit">
+<div class="row-fluid">
+	<div class="span12">
+		<fieldset>
+		<legend>#i18n{module.form.datevalidators.createDateCalculated.title}</legend>
+		<form class="form-horizontal" method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoCreateDateCalculated.jsp">
+		<input type="hidden" name="id_form" value="${id_form}" >
+		<div class="control-group">
+		<label class="control-label" for="date_reference">#i18n{module.form.datevalidators.createDateCalculated.labelDateReference} * </label>
+			<div class="controls">
+				<div class="input-prepend">
+					<span class="add-on"><i class="icon-calendar"></i></span>
+					<input type="text" name="date_reference" id="date_reference" class="input-small" maxlength="10" value="" >
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="id_operator">#i18n{module.form.datevalidators.createDateCalculated.labelOperator} * </label>
+			<div class="controls">
+				<@comboWithParams name="id_operator" default_value="-1" additionalParameters=" class=\"input-mini\"" items=operator_list  />
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="number">#i18n{module.form.datevalidators.createDateCalculated.labelNumber} * </label>
+			<div class="controls">
+				<input type="text" name="number" class="input-mini"  maxlength="10" value="" >
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="id_unit">#i18n{module.form.datevalidators.createDateCalculated.labelUnit} * </label>
+			<div class="controls">
+			<select name="id_unit" class="input-small">
 				<option value="-1"></option>
 				<#list unit_list as unit>
 					<option value="${unit.code}">#i18n{${unit.name}}</option>
 				</#list>
 			</select>
-		</p>
-		<p>
-			<input type="hidden" name="id_form" value="${id_form}" />
-			<input class="button" type="submit" name="save" value="#i18n{module.form.datevalidators.createDateCalculated.buttonSave}" />
-			<input class="button" type="submit" name="cancel" value="#i18n{module.form.datevalidators.createDateCalculated.buttonCancel}" />
-		</p>
-	</form>
+			</div>
+		</div>
+		<div class="form-actions">
+			<button class="btn btn-primary btn-small" type="submit" name="save">
+				<i class="icon-ok icon-white"></i>&nbsp;#i18n{module.form.datevalidators.createDateCalculated.buttonSave}
+			</button>
+			<a class="btn btn-small" href="jsp/admin/plugins/form/modules/datevalidators/ManageDateCalculated.jsp?id_form=${id_form}">
+				<i class="icon-remove-circle"></i>&nbsp;#i18n{module.form.datevalidators.createDateCalculated.buttonCancel}
+			</a>
+		</div>
+		</form>
+	</fieldset>
+	</div>
 </div>
-
+<script src="js/jquery/plugins/ui/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="js/jquery/plugins/ui/ui.datepicker-fr.js"></script>
 <@getDatePicker idField="date_reference" language=locale />

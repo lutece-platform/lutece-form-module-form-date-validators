@@ -1,25 +1,47 @@
-<div class="content-box">
-	<h2>#i18n{module.form.datevalidators.selectType.title}</h2>
-	<form method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoSelectType.jsp">
-		<p>
-			<label for="type">#i18n{module.form.datevalidators.selectType.labelType} * :</label>
-			<input type="radio" name="type" value="${type_entry}" />
-			#i18n{module.form.datevalidators.selectType.labelEntry}
-		</p>
-		<p>
-			<label>&nbsp;</label>
-			<input type="radio" name="type" value="${type_date_reference}" />
-			#i18n{module.form.datevalidators.selectType.labelDateReference}
-		</p>
-		<p>
-			<label>&nbsp;</label>
-			<input type="radio" name="type" value="${type_date_calculated}" />
-			#i18n{module.form.datevalidators.selectType.labelDateCalculated}
-		</p>
-		<p>
-			<input type="hidden" name="id_form" value="${id_form}" />
-			<input class="button" type="submit" name="validate" value="#i18n{module.form.datevalidators.selectType.buttonValidate}" />
-			<input class="button" type="submit" name="cancel" value="#i18n{module.form.datevalidators.selectType.buttonCancel}" />
-		</p>
-	</form>
+<div class="row-fluid">
+	<div class="span12">
+		<fieldset>
+		<legend>#i18n{module.form.datevalidators.selectType.title}</legend>
+		<form class="form-horizontal" method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoSelectType.jsp">
+		<input type="hidden" name="id_form" value="${id_form}" />
+		<div class="control-group">
+		<label class="control-label" for="">#i18n{module.form.datevalidators.selectType.labelType} *</label>
+			<div class="controls">
+				<label class="radio" for="type1">
+					<input type="radio" name="type" id="type1" value="${type_entry}" >
+					#i18n{module.form.datevalidators.selectType.labelEntry}
+				</label>
+				
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" > &nbsp;</label>
+			<div class="controls">
+			<label class="radio" for="type2">
+				<input type="radio" name="type" id="type2" value="${type_date_reference}">
+				#i18n{module.form.datevalidators.selectType.labelDateReference}
+				</label>
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" > &nbsp;</label>
+			<div class="controls">
+				<label class="radio" for="type3">
+					<input type="radio" name="type" id="type3" value="${type_date_calculated}">
+					#i18n{module.form.datevalidators.selectType.labelDateCalculated}
+				</label>
+			</div>
+		</div>
+		<div class="form-actions">
+			<button class="btn btn-primary btn-small" type="submit" name="validate">
+				<i class="icon-ok icon-white"></i>&nbsp;#i18n{module.form.datevalidators.selectType.buttonValidate}
+			</button>
+			<a class="btn btn-small" href="jsp/admin/plugins/form/ManageValidator.jsp?id_form=${id_form}" name="cancel" >
+				<i class="icon-remove-circle"></i>&nbsp;#i18n{module.form.datevalidators.selectType.buttonCancel}
+			</a>
+		</div>
+		
+		</form>
+	</fieldset>
+	</div>
 </div>

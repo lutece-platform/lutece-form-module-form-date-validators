@@ -1,9 +1,9 @@
 <#macro action_sort jsp_url attribute>
 	<a href="${jsp_url}&sorted_attribute_name=${attribute}&asc_sort=true">
-		<img src="images/admin/skin/actions/sort_asc.gif" style="vertical-align: text-bottom;" alt="#i18n{portal.util.sort.asc}" title="#i18n{portal.util.sort.asc}" />
+		<i class="icon-chevron-up" title="#i18n{portal.util.sort.asc}"></i>
 	</a>
 	<a href="${jsp_url}&sorted_attribute_name=${attribute}&asc_sort=false">
-    	<img src="images/admin/skin/actions/sort_desc.gif" style="vertical-align: text-bottom;" alt="#i18n{portal.util.sort.desc}" title="#i18n{portal.util.sort.desc}" />
+    	<i class="icon-chevron-down" title="#i18n{portal.util.sort.desc}"></i>
     </a>
 </#macro>
 

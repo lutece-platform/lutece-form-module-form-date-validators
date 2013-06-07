@@ -1,8 +1,8 @@
 <#macro action_sort jsp_url attribute>
-	<a class="btn btn-small" href="${jsp_url}&sorted_attribute_name=${attribute}&asc_sort=true" title="#i18n{portal.util.sort.asc}">
+	<a href="${jsp_url}&sorted_attribute_name=${attribute}&asc_sort=true" title="#i18n{portal.util.sort.asc}">
 		<i class="icon-chevron-up"></i>
 	</a>
-	<a class="btn btn-small" href="${jsp_url}&sorted_attribute_name=${attribute}&asc_sort=false" title="#i18n{portal.util.sort.desc}">
+	<a href="${jsp_url}&sorted_attribute_name=${attribute}&asc_sort=false" title="#i18n{portal.util.sort.desc}">
     	<i class="icon-chevron-down"></i> 
     </a>
 </#macro>
@@ -10,7 +10,7 @@
 <#macro action_delete id_rule>
 	<#if permission_delete>
         <a class="btn btn-small btn-danger" href="jsp/admin/plugins/form/modules/datevalidators/ConfirmRemoveRule.jsp?id_form=${id_form}&id_rule=${id_rule}" title="#i18n{module.form.datevalidators.manageRule.altDelete}">
-        	<i class="icon-chevron-down"></i>
+        	<i class="icon-trash icon-white"></i>
         </a>
     </#if>
 </#macro>
@@ -33,7 +33,6 @@
 				</form>
 			</#if>
 			</legend>
-			<div class="well well-small">
 			<@paginationAdmin paginator=paginator combo=1/>
 			<!-- form method="post" action="jsp/admin/plugins/form/ManageValidator.jsp">
 				<@pagination paginator = paginator />

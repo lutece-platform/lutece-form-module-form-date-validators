@@ -1,36 +1,58 @@
 <div class="row-fluid">
 	<div class="span12">
 		<fieldset>
-			<legend>#i18n{module.form.datevalidators.modifyDateCalculated.title}</h2>
-			<form class="form" method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoModifyDateCalculated.jsp">
-				<label for="date_reference">#i18n{module.form.datevalidators.modifyDateCalculated.labelDateReference} * :</label>
-				<input type="text" name="date_reference" id="date_reference" size="10" maxlength="10" value="${date_calculated.dateReference?date}" />
-				<label for="id_operator">#i18n{module.form.datevalidators.modifyDateCalculated.labelOperator} * :</label>
-				<@combo name="id_operator" items=operator_list default_value=date_calculated.operator.idOperator />
-				<label for="number">#i18n{module.form.datevalidators.modifyDateCalculated.labelNumber} * :</label>
-				<input type="text" name="number" size="10" maxlength="10" value="${date_calculated.number}" />
-				<label for="id_unit">#i18n{module.form.datevalidators.modifyDateCalculated.labelUnit} * :</label>
-				<select name="id_unit">
-					<option value="-1"></option>
-					<#list unit_list as unit>
-						<#if unit.code == date_calculated.unit.idUnit?string>
-							<option value="${unit.code}" selected="selected">#i18n{${unit.name}}</option>
-						<#else>
-							<option value="${unit.code}">#i18n{${unit.name}}</option>
-						</#if>
-					</#list>
-				</select>
+			<legend>#i18n{module.form.datevalidators.modifyDateCalculated.title}</legend>
+			<form class="form-horizontal" method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoModifyDateCalculated.jsp">
 				<input type="hidden" name="id_date_calculated" value="${date_calculated.idDateCalculated}" />
 				<input type="hidden" name="id_form" value="${id_form}" />
-				<button class="btn btn-small btn-primary" type="submit" name="save">
-					<i class="icon-ok icon-white"></i>&nbsp;#i18n{module.form.datevalidators.modifyDateCalculated.buttonSave}
-				</button>
-				<button class="btn btn-small" type="button" name="cancel">
-					<i class="icon-remove-circle"></i>&nbsp;#i18n{module.form.datevalidators.modifyDateCalculated.buttonCancel}
-				</button>
-			<form>
+				<div class="control-group">
+					<label class="control-label" for="date_reference">#i18n{module.form.datevalidators.modifyDateCalculated.labelDateReference} * </label>
+					<div class="controls">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-calendar"></i></span>
+							<input type="text" name="date_reference" id="date_reference" class="input-small " maxlength="10" value="${date_calculated.dateReference?date}">
+						</div>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="id_operator">#i18n{module.form.datevalidators.modifyDateCalculated.labelOperator} * </label>
+					<div class="controls">
+						<@comboWithParams name="id_operator" default_value=date_calculated.operator.idOperator?string additionalParameters=" class=\"input-mini\"" items=operator_list  />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="number">#i18n{module.form.datevalidators.modifyDateCalculated.labelNumber} * </label>
+					<div class="controls">
+							<input type="text" name="number" class="input-mini" maxlength="10" value="${date_calculated.number}" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="id_unit">#i18n{module.form.datevalidators.modifyDateCalculated.labelUnit} * </label>
+					<div class="controls">
+					<select name="id_unit" class="input-small">
+						<option value="-1"></option>
+						<#list unit_list as unit>
+							<#if unit.code == date_calculated.unit.idUnit?string>
+								<option value="${unit.code}" selected="selected">#i18n{${unit.name}}</option>
+							<#else>
+								<option value="${unit.code}">#i18n{${unit.name}}</option>
+							</#if>
+						</#list>
+					</select>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button class="btn btn-small btn-primary" type="submit" name="save">
+						<i class="icon-ok icon-white"></i>&nbsp;#i18n{module.form.datevalidators.modifyDateCalculated.buttonSave}
+					</button>
+					<button class="btn btn-small" type="button" name="cancel">
+						<i class="icon-remove-circle"></i>&nbsp;#i18n{module.form.datevalidators.modifyDateCalculated.buttonCancel}
+					</button>
+				</div>
+			</form>
 		</fieldset>
 	</div>
 </div>
-
+<script src="js/jquery/plugins/ui/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="js/jquery/plugins/ui/ui.datepicker-fr.js"></script>
 <@getDatePicker idField="date_reference" language=locale />

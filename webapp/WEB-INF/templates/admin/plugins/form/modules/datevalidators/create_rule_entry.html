@@ -1,33 +1,47 @@
-<div class="content-box">
-	<h2>#i18n{module.form.datevalidators.createRule.title}</h2>
-	<form method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoCreateRule.jsp">
-		<p>
-			<label for="id_entry1">#i18n{module.form.datevalidators.createRule.entry.labelEntry1} * :</label>
-			<select name="id_entry1">
-				<option value="-1"></option>
-				<#list entry_list as entry>
-					<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
-				</#list>
-			</select>
-		</p>
-		<p>
-			<label for="id_comparator">#i18n{module.form.datevalidators.createRule.labelComparator} * :</label>
-			<@combo name="id_comparator" items=comparator_list default_value=-1 />
-		</p>
-		<p>
-			<label for="id_entry2">#i18n{module.form.datevalidators.createRule.entry.labelEntry2} * :</label>
-			<select name="id_entry2">
-				<option value="-1"></option>
-				<#list entry_list as entry>
-					<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
-				</#list>
-			</select>
-		</p>
-		<p>
-			<input type="hidden" name="id_form" value="${id_form}" />
-			<input type="hidden" name="type" value="${type}" />
-			<input class="button" type="submit" name="save" value="#i18n{module.form.datevalidators.createRule.buttonSave}" />
-			<input class="button" type="submit" name="back" value="#i18n{module.form.datevalidators.createRule.buttonBack}" />
-		</p>
-	</form>
+<div class="row-fluid">
+	<div class="span12">
+		<fieldset>
+		<legend>#i18n{module.form.datevalidators.createRule.title}</legend>
+		<form class="form-horizontal" method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoCreateRule.jsp">
+			<input type="hidden" name="id_form" value="${id_form}">
+			<input type="hidden" name="type" value="${type}">
+			<div class="control-group">
+				<label class="control-label" for="id_entry1">#i18n{module.form.datevalidators.createRule.entry.labelEntry1} * </label>
+				<div class="controls">
+				<select name="id_entry1" class="input-normal">
+					<option value="-1"></option>
+					<#list entry_list as entry>
+						<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+					</#list>
+				</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="id_comparator">#i18n{module.form.datevalidators.createRule.labelComparator} * </label>
+				<div class="controls">
+					<@comboWithParams name="id_comparator" default_value="-1" additionalParameters=" class=\"input-mini\"" items=comparator_list  />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="id_entry2">#i18n{module.form.datevalidators.createRule.entry.labelEntry2} * </label>
+				<div class="controls">
+					<select name="id_entry2" class="input-normal">
+						<option value="-1"></option>
+						<#list entry_list as entry>
+							<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+						</#list>
+					</select>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button class="btn btn-primary btn-small" type="submit" name="save">
+					<i class="icon-ok icon-white"></i>&nbsp;#i18n{module.form.datevalidators.createRule.buttonSave}
+				</button>
+				<a class="btn btn-small" href="jsp/admin/plugins/form/modules/datevalidators/SelectType.jsp?id_form=${id_form}" name="back" >
+					<i class="icon-remove-circle"></i>&nbsp;#i18n{module.form.datevalidators.createRule.buttonBack}
+				</a>
+			</div>
+		</form>
+	</fieldset>
+	</div>
 </div>

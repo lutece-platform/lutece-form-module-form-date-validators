@@ -1,35 +1,54 @@
-<div class="content-box">
-	<h2>#i18n{module.form.datevalidators.modifyRule.title}</h2>
-	<form method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoModifyRule.jsp">
-		<p>
-			<label for="id_entry1">#i18n{module.form.datevalidators.modifyRule.dateReference.labelEntry} * :</label>
-			<select name="id_entry1">
-				<option value="-1"></option>
-				<#list entry_list as entry>
-					<#if entry.idEntry == rule.idEntry1>
-						<option value="${entry.idEntry}" selected="selected">${entry.idEntry} - ${entry.title}</option>
-					<#else>
-						<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
-					</#if>
-				</#list>
-			</select>
-		</p>
-		<p>
-			<label for="id_comparator">#i18n{module.form.datevalidators.modifyRule.labelComparator} * :</label>
-			<@combo name="id_comparator" items=comparator_list default_value=rule.idComparator />
-		</p>
-		<p>
-			<label for="date_reference">#i18n{module.form.datevalidators.modifyRule.dateReference.labelDateReference} * :</label>
-			<input type="text" name="date_reference" id="date_reference" size="10" maxlength="10" value="${rule.dateReference?date}" />
-		</p>
-		<p>
+<div class="row-fluid">
+	<div class="span12">
+	<fieldset>
+	<legend>#i18n{module.form.datevalidators.modifyRule.title}</legend>
+		<form class="form-horizontal" method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoModifyRule.jsp">
 			<input type="hidden" name="id_rule" value="${rule.idRule}" />
 			<input type="hidden" name="id_form" value="${rule.idForm}" />
 			<input type="hidden" name="type" value="${type}" />
-			<input class="button" type="submit" name="save" value="#i18n{module.form.datevalidators.modifyRule.buttonSave}" />
-			<input class="button" type="submit" name="cancel" value="#i18n{module.form.datevalidators.modifyRule.buttonCancel}" />
-		</p>
-	</form>
+			<div class="control-group">
+			<label class="control-label" for="id_entry1">#i18n{module.form.datevalidators.modifyRule.dateReference.labelEntry} * </label>
+			<div class="controls">
+				<select name="id_entry1">
+					<option value="-1"></option>
+					<#list entry_list as entry>
+						<#if entry.idEntry == rule.idEntry1>
+							<option value="${entry.idEntry}" selected="selected">${entry.idEntry} - ${entry.title}</option>
+						<#else>
+							<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+						</#if>
+					</#list>
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="id_comparator">#i18n{module.form.datevalidators.modifyRule.labelComparator} * </label>
+			<div class="controls">
+				<@comboWithParams name="id_comparator" default_value=rule.idComparator?string additionalParameters=" class=\"input-mini\"" items=comparator_list  />
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="date_reference">#i18n{module.form.datevalidators.modifyRule.dateReference.labelDateReference} * </label>
+			<div class="controls">
+				<div class="input-prepend">
+					<span class="add-on"><i class="icon-calendar"></i></span>
+					<input type="text" name="date_reference" id="date_reference" class="input-small" maxlength="10" value="${rule.dateReference?date}" />
+				</div>
+			</div>
+		</div>
+		<div class="form-actions">
+			<button class="btn btn-primary btn-small" type="submit" name="save">
+				<i class="icon-ok icon-white"></i>&nbsp;#i18n{module.form.datevalidators.modifyRule.buttonSave}
+			</button>
+			<button class="btn btn-small" type="submit" name="cancel" >
+				<i class="icon-remove-circle"></i>&nbsp;#i18n{module.form.datevalidators.modifyRule.buttonCancel}
+			</button>
+		</div>
+		</form>
+		<fieldset>
+	</div>
 </div>
 
+<script src="js/jquery/plugins/ui/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="js/jquery/plugins/ui/ui.datepicker-fr.js"></script>
 <@getDatePicker idField="date_reference" language=locale />
