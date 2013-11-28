@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.form.modules.datevalidators.business;
 
-import fr.paris.lutece.plugins.form.modules.datevalidators.service.DateValidatorsPlugin;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
@@ -46,19 +45,18 @@ import java.util.List;
 public final class RuleHome
 {
     // Static variable pointed at the DAO instance
-    private static IRuleDAO _dao = (IRuleDAO) SpringContextService.getPluginBean( DateValidatorsPlugin.PLUGIN_NAME,
-            "form-date-validators.ruleDAO" );
+    private static IRuleDAO _dao = SpringContextService.getBean( "form-date-validators.ruleDAO" );
 
     /**
      * Private constructor - this class does not need to be instantiated
      */
-    private RuleHome(  )
+    private RuleHome( )
     {
     }
 
     /**
      * Creates a new instance of rule
-     *
+     * 
      * @param rule The instance of rule which contains the informations to store
      * @param plugin The plugin
      * @return The instance of rule which has been created with its primary key
@@ -72,8 +70,9 @@ public final class RuleHome
 
     /**
      * Updates the rule whose identifier is specified in parameter
-     *
-     * @param rule The instance of rule which contains the informations to update
+     * 
+     * @param rule The instance of rule which contains the informations to
+     *            update
      * @param plugin The plugin
      */
     public static void update( Rule rule, Plugin plugin )
@@ -83,7 +82,7 @@ public final class RuleHome
 
     /**
      * Removes the rule whose identifier is specified in parameter
-     *
+     * 
      * @param nKey The rule primary key
      * @param plugin The plugin
      */
@@ -94,7 +93,7 @@ public final class RuleHome
 
     /**
      * Returns the rule whose identifier is specified in parameter
-     *
+     * 
      * @param nKey The rule primary key
      * @param plugin The plugin
      * @return The rule whose identifier is specified in parameter
@@ -106,7 +105,7 @@ public final class RuleHome
 
     /**
      * Finds all rules for a given form identifier
-     *
+     * 
      * @param nIdForm the form identifier
      * @param plugin The plugin
      * @return the list which contains the found rules

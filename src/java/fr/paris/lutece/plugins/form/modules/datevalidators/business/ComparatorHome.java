@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.form.modules.datevalidators.business;
 
-import fr.paris.lutece.plugins.form.modules.datevalidators.service.DateValidatorsPlugin;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.util.ReferenceList;
@@ -45,19 +44,18 @@ import fr.paris.lutece.util.ReferenceList;
 public final class ComparatorHome
 {
     // Static variable pointed at the DAO instance
-    private static IComparatorDAO _dao = (IComparatorDAO) SpringContextService.getPluginBean( DateValidatorsPlugin.PLUGIN_NAME,
-            "form-date-validators.comparatorDAO" );
+    private static IComparatorDAO _dao = SpringContextService.getBean( "form-date-validators.comparatorDAO" );
 
     /**
      * Private constructor - this class does not need to be instantiated
      */
-    private ComparatorHome(  )
+    private ComparatorHome( )
     {
     }
 
     /**
      * Loads data from the comparator whose identifier is specified in parameter
-     *
+     * 
      * @param nKey The comparator identifier
      * @param plugin The plugin
      * @return the comparator whose identifier is specified in parameter
@@ -69,7 +67,7 @@ public final class ComparatorHome
 
     /**
      * Loads data from all comparators
-     *
+     * 
      * @param plugin The plugin
      * @return the referenceList which contains data from all comparators
      */

@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.form.modules.datevalidators.business;
 
-import fr.paris.lutece.plugins.form.modules.datevalidators.service.DateValidatorsPlugin;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.util.ReferenceList;
@@ -45,19 +44,18 @@ import fr.paris.lutece.util.ReferenceList;
 public final class OperatorHome
 {
     // Static variable pointed at the DAO instance
-    private static IOperatorDAO _dao = (IOperatorDAO) SpringContextService.getPluginBean( DateValidatorsPlugin.PLUGIN_NAME,
-            "form-date-validators.operatorDAO" );
+    private static IOperatorDAO _dao = SpringContextService.getBean( "form-date-validators.operatorDAO" );
 
     /**
      * Private constructor - this class does not need to be instantiated
      */
-    private OperatorHome(  )
+    private OperatorHome( )
     {
     }
 
     /**
      * Loads data from the operator whose identifier is specified in parameter
-     *
+     * 
      * @param nKey The operator identifier
      * @param plugin The plugin
      * @return the operator whose identifier is specified in parameter
@@ -69,7 +67,7 @@ public final class OperatorHome
 
     /**
      * Loads data from all operators
-     *
+     * 
      * @param plugin The plugin
      * @return the referenceList which contains data from all operators
      */

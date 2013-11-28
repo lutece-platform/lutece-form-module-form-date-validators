@@ -41,5 +41,8 @@ import fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation;
  */
 public class DateValidatorsPlugin extends PluginDefaultImplementation
 {
+    /**
+     * Name of the form date validator module
+     */
     public static final String PLUGIN_NAME = "form-date-validators";
 }

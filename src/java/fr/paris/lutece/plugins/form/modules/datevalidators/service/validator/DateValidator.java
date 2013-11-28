@@ -69,8 +69,6 @@ import fr.paris.lutece.util.html.Paginator;
 import fr.paris.lutece.util.sort.AttributeComparator;
 import fr.paris.lutece.util.url.UrlItem;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -78,6 +76,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -104,7 +104,7 @@ public class DateValidator extends Validator
      * Returns the unique instance of the plugin
      * @return the unique instance of the plugin
      */
-    private static Plugin getPlugin(  )
+    private static Plugin getPlugin( )
     {
         if ( _plugin == null )
         {
@@ -115,19 +115,20 @@ public class DateValidator extends Validator
     }
 
     /**
-    * Returns the validator interface
-    * @param request {@link HttpServletRequest}
-    * @param nIdForm the form id
-    * @return the validator interface
-    */
+     * Returns the validator interface
+     * @param request {@link HttpServletRequest}
+     * @param nIdForm the form id
+     * @return the validator interface
+     */
     public String getUI( HttpServletRequest request, int nIdForm )
     {
-        _nDefaultItemsPerPage = AppPropertiesService.getPropertyInt( DateValidatorsConstants.PROPERTY_ITEMS_PER_PAGE, 10 );
+        _nDefaultItemsPerPage = AppPropertiesService.getPropertyInt( DateValidatorsConstants.PROPERTY_ITEMS_PER_PAGE,
+                10 );
         _strCurrentPageIndex = Paginator.getPageIndex( request, Paginator.PARAMETER_PAGE_INDEX, _strCurrentPageIndex );
         _nItemsPerPage = Paginator.getItemsPerPage( request, Paginator.PARAMETER_ITEMS_PER_PAGE, _nItemsPerPage,
                 _nDefaultItemsPerPage );
 
-        List<Rule> listRules = RuleHome.findRulesByForm( nIdForm, getPlugin(  ) );
+        List<Rule> listRules = RuleHome.findRulesByForm( nIdForm, getPlugin( ) );
 
         String strSortedAttributeName = request.getParameter( Parameters.SORTED_ATTRIBUTE_NAME );
         String strAscSort = null;
@@ -141,8 +142,8 @@ public class DateValidator extends Validator
             Collections.sort( listRules, new AttributeComparator( strSortedAttributeName, bIsAscSort ) );
         }
 
-        UrlItem urlItem = new UrlItem( AppPathService.getBaseUrl( request ) +
-                DateValidatorsConstants.JSP_MANAGE_VALIDATOR );
+        UrlItem urlItem = new UrlItem( AppPathService.getBaseUrl( request )
+                + DateValidatorsConstants.JSP_MANAGE_VALIDATOR );
         urlItem.addParameter( DateValidatorsConstants.PARAMETER_ID_FORM, nIdForm );
 
         if ( strSortedAttributeName != null )
@@ -155,23 +156,23 @@ public class DateValidator extends Validator
             urlItem.addParameter( Parameters.SORTED_ASC, strAscSort );
         }
 
-        Paginator<Rule> paginator = new Paginator<Rule>( listRules, _nItemsPerPage, urlItem.getUrl(  ),
+        Paginator<Rule> paginator = new Paginator<Rule>( listRules, _nItemsPerPage, urlItem.getUrl( ),
                 Paginator.PARAMETER_PAGE_INDEX, _strCurrentPageIndex );
 
-        Map<String, Object> model = new HashMap<String, Object>(  );
+        Map<String, Object> model = new HashMap<String, Object>( );
         model.put( DateValidatorsConstants.MARK_PAGINATOR, paginator );
         model.put( DateValidatorsConstants.MARK_NB_ITEMS_PER_PAGE, Integer.toString( _nItemsPerPage ) );
-        model.put( MARK_RULE_LIST, paginator.getPageItems(  ) );
+        model.put( MARK_RULE_LIST, paginator.getPageItems( ) );
         model.put( DateValidatorsConstants.MARK_ID_FORM, nIdForm );
         model.put( DateValidatorsConstants.MARK_SORTED_ATTRIBUTE_NAME, strSortedAttributeName );
         model.put( DateValidatorsConstants.MARK_SORTED_ASC, strAscSort );
         model.put( DateValidatorsConstants.MARK_ENTRY_LIST, DateValidatorsService.getAuthorizedEntries( nIdForm ) );
-        model.put( DateValidatorsConstants.MARK_COMPARATOR_LIST, ComparatorHome.findAll( getPlugin(  ) ) );
+        model.put( DateValidatorsConstants.MARK_COMPARATOR_LIST, ComparatorHome.findAll( getPlugin( ) ) );
         addPermissions( request, model );
 
-        HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_MANAGE_RULE, request.getLocale(  ), model );
+        HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_MANAGE_RULE, request.getLocale( ), model );
 
-        return template.getHtml(  );
+        return template.getHtml( );
     }
 
     /**
@@ -185,7 +186,7 @@ public class DateValidator extends Validator
         boolean bPermissionCreate = false;
 
         if ( RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    DateValidatorsResourceIdService.PERMISSION_RULE_CREATE, AdminUserService.getAdminUser( request ) ) )
+                DateValidatorsResourceIdService.PERMISSION_RULE_CREATE, AdminUserService.getAdminUser( request ) ) )
         {
             bPermissionCreate = true;
         }
@@ -196,7 +197,7 @@ public class DateValidator extends Validator
         boolean bPermissionModify = false;
 
         if ( RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    DateValidatorsResourceIdService.PERMISSION_RULE_MODIFY, AdminUserService.getAdminUser( request ) ) )
+                DateValidatorsResourceIdService.PERMISSION_RULE_MODIFY, AdminUserService.getAdminUser( request ) ) )
         {
             bPermissionModify = true;
         }
@@ -207,7 +208,7 @@ public class DateValidator extends Validator
         boolean bPermissionDelete = false;
 
         if ( RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    DateValidatorsResourceIdService.PERMISSION_RULE_DELETE, AdminUserService.getAdminUser( request ) ) )
+                DateValidatorsResourceIdService.PERMISSION_RULE_DELETE, AdminUserService.getAdminUser( request ) ) )
         {
             bPermissionDelete = true;
         }
@@ -218,8 +219,8 @@ public class DateValidator extends Validator
         boolean bPermissionManage = false;
 
         if ( RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    DateValidatorsResourceIdService.PERMISSION_DATE_CALCULATED_MANAGE,
-                    AdminUserService.getAdminUser( request ) ) )
+                DateValidatorsResourceIdService.PERMISSION_DATE_CALCULATED_MANAGE,
+                AdminUserService.getAdminUser( request ) ) )
         {
             bPermissionManage = true;
         }
@@ -228,13 +229,14 @@ public class DateValidator extends Validator
     }
 
     /**
-    * Checks if the validator is associated with the form
-    * @param nIdForm the form id
-    * @return true if the validator is associated with the form, otherwise false
-    */
+     * Checks if the validator is associated with the form
+     * @param nIdForm the form id
+     * @return true if the validator is associated with the form, otherwise
+     *         false
+     */
     public boolean isAssociatedWithForm( int nIdForm )
     {
-        return ( RuleHome.findRulesByForm( nIdForm, getPlugin(  ) ).size(  ) > 0 );
+        return ( RuleHome.findRulesByForm( nIdForm, getPlugin( ) ).size( ) > 0 );
     }
 
     /**
@@ -243,9 +245,9 @@ public class DateValidator extends Validator
      */
     public void removeAssociationsWithForm( int nIdForm )
     {
-        for ( Rule rule : RuleHome.findRulesByForm( nIdForm, getPlugin(  ) ) )
+        for ( Rule rule : RuleHome.findRulesByForm( nIdForm, getPlugin( ) ) )
         {
-            RuleHome.remove( rule.getIdRule(  ), getPlugin(  ) );
+            RuleHome.remove( rule.getIdRule( ), getPlugin( ) );
         }
     }
 
@@ -257,25 +259,25 @@ public class DateValidator extends Validator
      * @throws SiteMessageException throws SiteMessageException
      */
     public void validateForm( HttpServletRequest request, FormSubmit formSubmit, Plugin formPlugin )
-        throws SiteMessageException
+            throws SiteMessageException
     {
         // Checks that all rules are followed
-        for ( Rule rule : RuleHome.findRulesByForm( formSubmit.getForm(  ).getIdForm(  ), getPlugin(  ) ) )
+        for ( Rule rule : RuleHome.findRulesByForm( formSubmit.getForm( ).getIdForm( ), getPlugin( ) ) )
         {
             // Entry
-            if ( rule.getIdEntry2(  ) != null )
+            if ( rule.getIdEntry2( ) != null )
             {
                 validateRuleEntry( request, formSubmit, formPlugin, rule );
             }
 
             // Reference date
-            else if ( rule.getDateReference(  ) != null )
+            else if ( rule.getDateReference( ) != null )
             {
                 validateRuleDateReference( request, formSubmit, formPlugin, rule );
             }
 
             // Calculated date
-            else if ( rule.getDateCalculated(  ) != null )
+            else if ( rule.getDateCalculated( ) != null )
             {
                 validateRuleDateCalculated( request, formSubmit, formPlugin, rule );
             }
@@ -291,21 +293,21 @@ public class DateValidator extends Validator
      * @throws SiteMessageException throws SiteMessageException
      */
     private void validateRuleEntry( HttpServletRequest request, FormSubmit formSubmit, Plugin formPlugin, Rule rule )
-        throws SiteMessageException
+            throws SiteMessageException
     {
         // Gets the dates
         Date dateEntry1 = null;
         Date dateEntry2 = null;
 
-        for ( Response response : formSubmit.getListResponse(  ) )
+        for ( Response response : formSubmit.getListResponse( ) )
         {
-            if ( response.getEntry(  ).getIdEntry(  ) == rule.getIdEntry1(  ) )
+            if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry1( ) )
             {
-                dateEntry1 = new Date( Long.parseLong( new String( response.getValueResponse(  ) ) ) );
+                dateEntry1 = new Date( Long.parseLong( response.getResponseValue( ) ) );
             }
-            else if ( response.getEntry(  ).getIdEntry(  ) == rule.getIdEntry2(  ) )
+            else if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry2( ) )
             {
-                dateEntry2 = new Date( Long.parseLong( new String( response.getValueResponse(  ) ) ) );
+                dateEntry2 = new Date( Long.parseLong( response.getResponseValue( ) ) );
             }
 
             // Break
@@ -316,38 +318,38 @@ public class DateValidator extends Validator
         }
 
         // Gets the comparator
-        String strClassName = ComparatorHome.findByPrimaryKey( rule.getIdComparator(  ), getPlugin(  ) ).getClassName(  );
+        String strClassName = ComparatorHome.findByPrimaryKey( rule.getIdComparator( ), getPlugin( ) ).getClassName( );
 
         if ( ( dateEntry1 != null ) && ( dateEntry2 != null ) && StringUtils.isNotBlank( strClassName ) )
         {
             try
             {
                 // Instanciates the comparator
-                IComparator comparator = (IComparator) Class.forName( strClassName ).newInstance(  );
+                IComparator comparator = (IComparator) Class.forName( strClassName ).newInstance( );
 
                 // Compares the dates
                 if ( !comparator.compare( dateEntry1, dateEntry2 ) )
                 {
-                    IEntry entry1 = EntryHome.findByPrimaryKey( rule.getIdEntry1(  ), formPlugin );
-                    IEntry entry2 = EntryHome.findByPrimaryKey( rule.getIdEntry2(  ), formPlugin );
+                    IEntry entry1 = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
+                    IEntry entry2 = EntryHome.findByPrimaryKey( rule.getIdEntry2( ) );
 
-                    Object[] messageArgs = { entry1.getTitle(  ), entry2.getTitle(  ) };
+                    Object[] messageArgs = { entry1.getTitle( ), entry2.getTitle( ) };
 
-                    SiteMessageService.setMessage( request, comparator.getMessage(  ), messageArgs,
-                        SiteMessage.TYPE_STOP );
+                    SiteMessageService.setMessage( request, comparator.getMessage( ), messageArgs,
+                            SiteMessage.TYPE_STOP );
                 }
             }
             catch ( InstantiationException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( IllegalAccessException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( ClassNotFoundException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
         }
     }
@@ -361,54 +363,54 @@ public class DateValidator extends Validator
      * @throws SiteMessageException throws SiteMessageException
      */
     private void validateRuleDateReference( HttpServletRequest request, FormSubmit formSubmit, Plugin formPlugin,
-        Rule rule ) throws SiteMessageException
+            Rule rule ) throws SiteMessageException
     {
         // Gets the entry date
         Date dateEntry = null;
 
-        for ( Response response : formSubmit.getListResponse(  ) )
+        for ( Response response : formSubmit.getListResponse( ) )
         {
-            if ( response.getEntry(  ).getIdEntry(  ) == rule.getIdEntry1(  ) )
+            if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry1( ) )
             {
-                dateEntry = new Date( Long.parseLong( new String( response.getValueResponse(  ) ) ) );
+                dateEntry = new Date( Long.parseLong( response.getResponseValue( ) ) );
 
                 break;
             }
         }
 
         // Gets the comparator
-        String strClassName = ComparatorHome.findByPrimaryKey( rule.getIdComparator(  ), getPlugin(  ) ).getClassName(  );
+        String strClassName = ComparatorHome.findByPrimaryKey( rule.getIdComparator( ), getPlugin( ) ).getClassName( );
 
         if ( ( dateEntry != null ) && StringUtils.isNotBlank( strClassName ) )
         {
             try
             {
                 // Instanciates the comparator
-                IComparator comparator = (IComparator) Class.forName( strClassName ).newInstance(  );
+                IComparator comparator = (IComparator) Class.forName( strClassName ).newInstance( );
 
                 // Compares the dates
-                if ( !comparator.compare( dateEntry, rule.getDateReference(  ) ) )
+                if ( !comparator.compare( dateEntry, rule.getDateReference( ) ) )
                 {
-                    IEntry entry = EntryHome.findByPrimaryKey( rule.getIdEntry1(  ), formPlugin );
-                    String strDateReference = DateUtil.getDateString( rule.getDateReference(  ), request.getLocale(  ) );
+                    IEntry entry = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
+                    String strDateReference = DateUtil.getDateString( rule.getDateReference( ), request.getLocale( ) );
 
-                    Object[] messageArgs = { entry.getTitle(  ), strDateReference };
+                    Object[] messageArgs = { entry.getTitle( ), strDateReference };
 
-                    SiteMessageService.setMessage( request, comparator.getMessage(  ), messageArgs,
-                        SiteMessage.TYPE_STOP );
+                    SiteMessageService.setMessage( request, comparator.getMessage( ), messageArgs,
+                            SiteMessage.TYPE_STOP );
                 }
             }
             catch ( InstantiationException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( IllegalAccessException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( ClassNotFoundException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
         }
     }
@@ -422,54 +424,53 @@ public class DateValidator extends Validator
      * @throws SiteMessageException throws SiteMessageException
      */
     private void validateRuleDateCalculated( HttpServletRequest request, FormSubmit formSubmit, Plugin formPlugin,
-        Rule rule ) throws SiteMessageException
+            Rule rule ) throws SiteMessageException
     {
         // Gets the entry date
         Date dateEntry = null;
 
-        for ( Response response : formSubmit.getListResponse(  ) )
+        for ( Response response : formSubmit.getListResponse( ) )
         {
-            if ( response.getEntry(  ).getIdEntry(  ) == rule.getIdEntry1(  ) )
+            if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry1( ) )
             {
-                dateEntry = new Date( Long.parseLong( new String( response.getValueResponse(  ) ) ) );
+                dateEntry = new Date( Long.parseLong( response.getResponseValue( ) ) );
 
                 break;
             }
         }
 
         // Gets the calendar field (unit)
-        String strUnitClassName = UnitHome.findByPrimaryKey( rule.getDateCalculated(  ).getUnit(  ).getIdUnit(  ),
-                getPlugin(  ) ).getClassName(  );
+        String strUnitClassName = UnitHome.findByPrimaryKey( rule.getDateCalculated( ).getUnit( ).getIdUnit( ),
+                getPlugin( ) ).getClassName( );
         Integer nCalendarField = null;
 
         if ( StringUtils.isNotBlank( strUnitClassName ) )
         {
             try
             {
-                // Instanciates the unit
-                IUnit unit = (IUnit) Class.forName( strUnitClassName ).newInstance(  );
+                // Instantiates the unit
+                IUnit unit = (IUnit) Class.forName( strUnitClassName ).newInstance( );
 
                 // Gets the calendarField
-                nCalendarField = unit.getCalendarField(  );
+                nCalendarField = unit.getCalendarField( );
             }
             catch ( InstantiationException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( IllegalAccessException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( ClassNotFoundException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
         }
 
         // Gets the calculated date (operator)
-        String strOperatorClassName = OperatorHome.findByPrimaryKey( rule.getDateCalculated(  ).getOperator(  )
-                                                                         .getIdOperator(  ), getPlugin(  ) )
-                                                  .getClassName(  );
+        String strOperatorClassName = OperatorHome.findByPrimaryKey(
+                rule.getDateCalculated( ).getOperator( ).getIdOperator( ), getPlugin( ) ).getClassName( );
         Date dateCalculated = null;
 
         if ( ( nCalendarField != null ) && StringUtils.isNotBlank( strOperatorClassName ) )
@@ -477,60 +478,60 @@ public class DateValidator extends Validator
             try
             {
                 // Instanciates the operator
-                IOperator operator = (IOperator) Class.forName( strOperatorClassName ).newInstance(  );
+                IOperator operator = (IOperator) Class.forName( strOperatorClassName ).newInstance( );
 
                 // Calculates the date
-                dateCalculated = operator.calculate( rule.getDateCalculated(  ).getDateReference(  ), nCalendarField,
-                        rule.getDateCalculated(  ).getNumber(  ) );
+                dateCalculated = operator.calculate( rule.getDateCalculated( ).getDateReference( ), nCalendarField,
+                        rule.getDateCalculated( ).getNumber( ) );
             }
             catch ( InstantiationException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( IllegalAccessException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( ClassNotFoundException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
         }
 
         // Gets the comparator
-        String strComparatorClassName = ComparatorHome.findByPrimaryKey( rule.getIdComparator(  ), getPlugin(  ) )
-                                                      .getClassName(  );
+        String strComparatorClassName = ComparatorHome.findByPrimaryKey( rule.getIdComparator( ), getPlugin( ) )
+                .getClassName( );
 
         if ( ( dateEntry != null ) && ( dateCalculated != null ) && StringUtils.isNotBlank( strComparatorClassName ) )
         {
             try
             {
                 // Instanciates the comparator
-                IComparator comparator = (IComparator) Class.forName( strComparatorClassName ).newInstance(  );
+                IComparator comparator = (IComparator) Class.forName( strComparatorClassName ).newInstance( );
 
                 // Compares the dates
                 if ( !comparator.compare( dateEntry, dateCalculated ) )
                 {
-                    IEntry entry = EntryHome.findByPrimaryKey( rule.getIdEntry1(  ), formPlugin );
-                    String strDateCalculated = DateUtil.getDateString( dateCalculated, request.getLocale(  ) );
+                    IEntry entry = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
+                    String strDateCalculated = DateUtil.getDateString( dateCalculated, request.getLocale( ) );
 
-                    Object[] messageArgs = { entry.getTitle(  ), strDateCalculated };
+                    Object[] messageArgs = { entry.getTitle( ), strDateCalculated };
 
-                    SiteMessageService.setMessage( request, comparator.getMessage(  ), messageArgs,
-                        SiteMessage.TYPE_STOP );
+                    SiteMessageService.setMessage( request, comparator.getMessage( ), messageArgs,
+                            SiteMessage.TYPE_STOP );
                 }
             }
             catch ( InstantiationException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( IllegalAccessException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
             catch ( ClassNotFoundException e )
             {
-                AppLogService.error( e.getMessage(  ), e );
+                AppLogService.error( e.getMessage( ), e );
             }
         }
     }

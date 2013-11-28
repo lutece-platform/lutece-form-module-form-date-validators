@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.form.modules.datevalidators.business;
 
-import fr.paris.lutece.plugins.form.modules.datevalidators.service.DateValidatorsPlugin;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
@@ -46,22 +45,23 @@ import java.util.List;
 public final class DateCalculatedHome
 {
     // Static variable pointed at the DAO instance
-    private static IDateCalculatedDAO _dao = (IDateCalculatedDAO) SpringContextService.getPluginBean( DateValidatorsPlugin.PLUGIN_NAME,
-            "form-date-validators.dateCalculatedDAO" );
+    private static IDateCalculatedDAO _dao = SpringContextService.getBean( "form-date-validators.dateCalculatedDAO" );
 
     /**
      * Private constructor - this class does not need to be instantiated
      */
-    private DateCalculatedHome(  )
+    private DateCalculatedHome( )
     {
     }
 
     /**
      * Creates a new instance of calculated date
-     *
-     * @param dateCalculated The instance of calculated date which contains the informations to store
+     * 
+     * @param dateCalculated The instance of calculated date which contains the
+     *            informations to store
      * @param plugin The plugin
-     * @return The instance of calculated date which has been created with its primary key
+     * @return The instance of calculated date which has been created with its
+     *         primary key
      */
     public static DateCalculated create( DateCalculated dateCalculated, Plugin plugin )
     {
@@ -72,8 +72,9 @@ public final class DateCalculatedHome
 
     /**
      * Updates the calculated date whose identifier is specified in parameter
-     *
-     * @param dateCalculated The instance of calculated date which contains the informations to update
+     * 
+     * @param dateCalculated The instance of calculated date which contains the
+     *            informations to update
      * @param plugin The plugin
      */
     public static void update( DateCalculated dateCalculated, Plugin plugin )
@@ -83,7 +84,7 @@ public final class DateCalculatedHome
 
     /**
      * Removes the calculated date whose identifier is specified in parameter
-     *
+     * 
      * @param nKey The calculated date primary key
      * @param plugin The plugin
      */
@@ -94,7 +95,7 @@ public final class DateCalculatedHome
 
     /**
      * Returns the calculated date whose identifier is specified in parameter
-     *
+     * 
      * @param nKey The calculated date primary key
      * @param plugin The plugin
      * @return The calculated date whose identifier is specified in parameter
@@ -106,7 +107,7 @@ public final class DateCalculatedHome
 
     /**
      * Finds all calculated dates
-     *
+     * 
      * @param plugin The plugin
      * @return the list which contains all calculated dates
      */
