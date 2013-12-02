@@ -33,10 +33,7 @@
  */
 package fr.paris.lutece.plugins.form.modules.datevalidators.service.validator;
 
-import fr.paris.lutece.plugins.form.business.EntryHome;
 import fr.paris.lutece.plugins.form.business.FormSubmit;
-import fr.paris.lutece.plugins.form.business.IEntry;
-import fr.paris.lutece.plugins.form.business.Response;
 import fr.paris.lutece.plugins.form.modules.datevalidators.business.ComparatorHome;
 import fr.paris.lutece.plugins.form.modules.datevalidators.business.OperatorHome;
 import fr.paris.lutece.plugins.form.modules.datevalidators.business.Rule;
@@ -50,6 +47,9 @@ import fr.paris.lutece.plugins.form.modules.datevalidators.service.DateValidator
 import fr.paris.lutece.plugins.form.modules.datevalidators.service.DateValidatorsService;
 import fr.paris.lutece.plugins.form.modules.datevalidators.util.DateValidatorsConstants;
 import fr.paris.lutece.plugins.form.service.validator.Validator;
+import fr.paris.lutece.plugins.genericattributes.business.EntryHome;
+import fr.paris.lutece.plugins.genericattributes.business.IEntry;
+import fr.paris.lutece.plugins.genericattributes.business.Response;
 import fr.paris.lutece.portal.business.rbac.RBAC;
 import fr.paris.lutece.portal.service.admin.AdminUserService;
 import fr.paris.lutece.portal.service.message.SiteMessage;
