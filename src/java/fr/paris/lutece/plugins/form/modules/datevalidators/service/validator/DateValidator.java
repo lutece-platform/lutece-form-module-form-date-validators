@@ -48,7 +48,7 @@ import fr.paris.lutece.plugins.form.modules.datevalidators.service.DateValidator
 import fr.paris.lutece.plugins.form.modules.datevalidators.util.DateValidatorsConstants;
 import fr.paris.lutece.plugins.form.service.validator.Validator;
 import fr.paris.lutece.plugins.genericattributes.business.EntryHome;
-import fr.paris.lutece.plugins.genericattributes.business.IEntry;
+import fr.paris.lutece.plugins.genericattributes.business.Entry;
 import fr.paris.lutece.plugins.genericattributes.business.Response;
 import fr.paris.lutece.portal.business.rbac.RBAC;
 import fr.paris.lutece.portal.service.admin.AdminUserService;
@@ -330,8 +330,8 @@ public class DateValidator extends Validator
                 // Compares the dates
                 if ( !comparator.compare( dateEntry1, dateEntry2 ) )
                 {
-                    IEntry entry1 = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
-                    IEntry entry2 = EntryHome.findByPrimaryKey( rule.getIdEntry2( ) );
+                    Entry entry1 = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
+                    Entry entry2 = EntryHome.findByPrimaryKey( rule.getIdEntry2( ) );
 
                     Object[] messageArgs = { entry1.getTitle( ), entry2.getTitle( ) };
 
@@ -391,7 +391,7 @@ public class DateValidator extends Validator
                 // Compares the dates
                 if ( !comparator.compare( dateEntry, rule.getDateReference( ) ) )
                 {
-                    IEntry entry = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
+                    Entry entry = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
                     String strDateReference = DateUtil.getDateString( rule.getDateReference( ), request.getLocale( ) );
 
                     Object[] messageArgs = { entry.getTitle( ), strDateReference };
@@ -512,7 +512,7 @@ public class DateValidator extends Validator
                 // Compares the dates
                 if ( !comparator.compare( dateEntry, dateCalculated ) )
                 {
-                    IEntry entry = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
+                    Entry entry = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
                     String strDateCalculated = DateUtil.getDateString( dateCalculated, request.getLocale( ) );
 
                     Object[] messageArgs = { entry.getTitle( ), strDateCalculated };
