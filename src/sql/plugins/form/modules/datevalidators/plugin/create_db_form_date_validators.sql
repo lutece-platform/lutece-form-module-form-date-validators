@@ -1,3 +1,9 @@
+DROP TABLE IF EXISTS form_date_validators_comparator; 
+DROP TABLE IF EXISTS form_date_validators_operator; 
+DROP TABLE IF EXISTS form_date_validators_unit; 
+DROP TABLE IF EXISTS form_date_validators_rule; 
+DROP TABLE IF EXISTS form_date_validators_date_calculated; 
+
 --
 -- table structure for form_date_validators_comparator
 --
