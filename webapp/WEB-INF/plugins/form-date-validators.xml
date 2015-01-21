@@ -3,7 +3,7 @@
     <!-- Plugin informations -->
 	<name>form-date-validators</name>
 	<class>fr.paris.lutece.plugins.form.modules.datevalidators.service.DateValidatorsPlugin</class>
-	<version>1.0.2</version>
+	<version>1.1.0</version>
 	<description>module.form.datevalidators.module.description</description>
 	<documentation/>
 	<installation/>
