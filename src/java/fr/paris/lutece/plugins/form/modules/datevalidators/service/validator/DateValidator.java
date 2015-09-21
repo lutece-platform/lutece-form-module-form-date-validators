@@ -372,7 +372,7 @@ public class DateValidator extends Validator
         {
             if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry1( ) )
             {
-                dateEntry = new Date( Long.parseLong( response.getResponseValue( ) ) );
+                dateEntry = DateUtil.formatDate(response.getResponseValue( ), request.getLocale());
 
                 break;
             }

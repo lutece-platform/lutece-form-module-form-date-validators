@@ -349,7 +349,7 @@ public class DateValidatorsJspBean extends FormJspBean
         model.put( DateValidatorsConstants.MARK_ENTRY_LIST, DateValidatorsService.getAuthorizedEntries( nIdForm ) );
         model.put( DateValidatorsConstants.MARK_COMPARATOR_LIST, refListComparator );
         model.put( MARK_TYPE, DateValidatorsConstants.TYPE_DATE_REFERENCE );
-        model.put( MARK_LOCALE, request.getLocale(  ) );
+        model.put( MARK_LOCALE, getLocale(  ) );
 
         HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_CREATE_RULE_DATE_REFERENCE, getLocale(  ),
                 model );
