@@ -303,11 +303,11 @@ public class DateValidator extends Validator
         {
             if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry1( ) )
             {
-                dateEntry1 = new Date( Long.parseLong( response.getResponseValue( ) ) );
+                dateEntry1 = DateUtil.formatDate(response.getResponseValue( ), request.getLocale());
             }
             else if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry2( ) )
             {
-                dateEntry2 = new Date( Long.parseLong( response.getResponseValue( ) ) );
+                dateEntry2 = DateUtil.formatDate(response.getResponseValue( ), request.getLocale());
             }
 
             // Break
@@ -433,7 +433,7 @@ public class DateValidator extends Validator
         {
             if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry1( ) )
             {
-                dateEntry = new Date( Long.parseLong( response.getResponseValue( ) ) );
+                dateEntry = DateUtil.formatDate(response.getResponseValue( ), request.getLocale());
 
                 break;
             }
