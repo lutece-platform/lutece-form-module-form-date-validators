@@ -1,47 +1,24 @@
-<div class="row-fluid">
-	<div class="span12">
-		<fieldset>
-		<legend>#i18n{module.form.datevalidators.selectType.title}</legend>
-		<form class="form-horizontal" method="post" action="jsp/admin/plugins/form/modules/datevalidators/DoSelectType.jsp">
-		<input type="hidden" name="id_form" value="${id_form}" />
-		<div class="control-group">
-		<label class="control-label" for="">#i18n{module.form.datevalidators.selectType.labelType} *</label>
-			<div class="controls">
-				<label class="radio" for="type1">
-					<input type="radio" name="type" id="type1" value="${type_entry}" >
-					#i18n{module.form.datevalidators.selectType.labelEntry}
-				</label>
-				
-			</div>
-		</div>
-		<div class="control-group">
-		<label class="control-label" > &nbsp;</label>
-			<div class="controls">
-			<label class="radio" for="type2">
-				<input type="radio" name="type" id="type2" value="${type_date_reference}">
-				#i18n{module.form.datevalidators.selectType.labelDateReference}
-				</label>
-			</div>
-		</div>
-		<div class="control-group">
-		<label class="control-label" > &nbsp;</label>
-			<div class="controls">
-				<label class="radio" for="type3">
-					<input type="radio" name="type" id="type3" value="${type_date_calculated}">
-					#i18n{module.form.datevalidators.selectType.labelDateCalculated}
-				</label>
-			</div>
-		</div>
-		<div class="form-actions">
-			<button class="btn btn-primary btn-small" type="submit" name="validate">
-				<i class="icon-ok icon-white"></i>&nbsp;#i18n{module.form.datevalidators.selectType.buttonValidate}
-			</button>
-			<a class="btn btn-small" href="jsp/admin/plugins/form/ManageValidator.jsp?id_form=${id_form}" name="cancel" >
-				<i class="icon-remove-circle"></i>&nbsp;#i18n{module.form.datevalidators.selectType.buttonCancel}
-			</a>
-		</div>
-		
-		</form>
-	</fieldset>
-	</div>
-</div>
+<@row>
+  <@columns>
+    <@box color='primary'>
+			<@boxHeader title='#i18n{module.form.datevalidators.selectType.title}' />
+			<@boxBody>
+				<@tform action='jsp/admin/plugins/form/modules/datevalidators/DoSelectType.jsp'>
+					<fieldset>
+						<legend class="sr-only">#i18n{module.form.datevalidators.selectType.title}</legend>
+						<input type="hidden" name="id_form" value="${id_form}" />
+						<@formGroup labelKey='#i18n{module.form.datevalidators.selectType.labelType}' mandatory=true>
+							<@radioButton labelFor='type1' labelKey='#i18n{module.form.datevalidators.selectType.labelEntry}' name='type' id='type1' value=type_entry />
+							<@radioButton labelFor='type2' labelKey='#i18n{module.form.datevalidators.selectType.labelDateReference}' name='type' id='type2' value=type_date_reference />
+							<@radioButton labelFor='type3' labelKey='#i18n{module.form.datevalidators.selectType.labelDateCalculated}' name='type' id='type3' value=type_date_calculated />
+						</@formGroup>
+						<@formGroup>
+							<@button type='submit' name='validate' buttonIcon='save' title='#i18n{module.form.datevalidators.selectType.buttonValidate}' size='' />
+							<@aButton href='jsp/admin/plugins/form/ManageValidator.jsp?id_form=${id_form}' name='cancel' buttonIcon='remove' title='#i18n{module.form.datevalidators.selectType.buttonCancel}' size='' color='btn-secondary' />
+						</@formGroup>
+					</fieldset>
+				</@tform>
+			</@boxBody>
+    </@box>
+  </@columns>
+</@row>

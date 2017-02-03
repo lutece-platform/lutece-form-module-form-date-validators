@@ -14,45 +14,26 @@
         </a>
     </#if>
 </#macro>
-<div class="row-fluid">
-	<div class="span12">
-		<fieldset>
-			<legend>#i18n{module.form.datevalidators.manageRule.title}
-			<#if permission_create>
-				<form method="post" class="form-inline pull-right" action="jsp/admin/plugins/form/modules/datevalidators/SelectType.jsp?id_form=${id_form}">
-					<button class="btn btn-small btn-primary" type="submit" >
-						<i class="icon-plus icon-white"></i>&nbsp;#i18n{module.form.datevalidators.manageRule.buttonCreate}
-					</button>
-				</form>
-			</#if>
-			<#if permission_manage>
-				<form method="post" class="form-inline spaced pull-right" action="jsp/admin/plugins/form/modules/datevalidators/ManageDateCalculated.jsp?id_form=${id_form}">
-					<button class="btn btn-small btn-primary" type="submit" >
-						<i class="icon-calendar icon-white"></i>&nbsp;#i18n{module.form.datevalidators.manageRule.buttonManageDateCalculated}
-					</button>
-				</form>
-			</#if>
-			</legend>
-			<@paginationAdmin paginator=paginator combo=1/>
-			<!-- form method="post" action="jsp/admin/plugins/form/ManageValidator.jsp">
-				<@pagination paginator = paginator />
-				#i18n{module.form.datevalidators.manageRule.labelItemsPerPage} :
-				<select name="items_per_page">
-					<#list [ "10" , "20" , "50" , "100" ] as nb>
-						<#if nb_items_per_page = nb>
-							<option value="${nb}" selected="selected">${nb}</option>
-						<#else>
-							<option value="${nb}">${nb}</option>
-						</#if>
-					</#list>
-				</select>
-				<input type="hidden" name="id_form" value="${id_form}" />
-				<input type="hidden" name="sorted_attribute_name" value="${sorted_attribute_name!}" />
-				<input type="hidden" name="asc_sort" value="${asc_sort!}" />
-				<input class="button" type="submit" value="#i18n{module.form.datevalidators.manageRule.buttonItemsPerPage}" />
-			</form -->
 
-			<table class="table table-striped table-condensed">
+<@row>
+  <@columns>
+    <@box>
+			<#assign title>
+				<@icon style='gavel' />
+				#i18n{module.form.datevalidators.manageRule.title}
+			</#assign>
+			<#if permission_create>
+				<#assign boxTools=true />
+			</#if>
+			<@boxHeader title=title boxTools=boxTools>
+				<@tform action='jsp/admin/plugins/form/modules/datevalidators/SelectType.jsp?id_form=${id_form}'>
+					<@button type='submit' buttonIcon='plus' title='#i18n{module.form.datevalidators.manageRule.buttonCreate}' showTitleXs=false size='' />
+				</@tform>
+			</@boxHeader>
+			<@boxBody>
+				<@paginationAdmin paginator=paginator combo=1/>
+				<div class="clearfix"></div>
+				<@table>
 				<tr>
 					<th>#i18n{module.form.datevalidators.manageRule.rowEntry}
 						<@action_sort jsp_url="jsp/admin/plugins/form/ManageValidator.jsp?id_form=${id_form}" attribute="idEntry1" />
@@ -114,8 +95,9 @@
 						</#if>
 					</tr>
 				</#list>
-			</table>
-		</div>
-	</div>
-</div>
+				</@table>
+			</@boxBody>
+    </@box>
+  </@columns>
+</@row>
 
