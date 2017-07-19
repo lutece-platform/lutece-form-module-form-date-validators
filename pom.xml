@@ -1,55 +1,50 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	
-	<parent>
-		<artifactId>lutece-plugins-pom</artifactId>
-		<groupId>fr.paris.lutece.plugins</groupId>
-		<version>3.7</version>
-	</parent>
-	
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>fr.paris.lutece.plugins</groupId>
-	<artifactId>module-form-date-validators</artifactId>
-	<packaging>lutece-plugin</packaging>
-	<version>1.1.2-SNAPSHOT</version>
-	<name>Lutece form date validators module</name>
-	
-	<repositories>
+    <parent>
+        <artifactId>lutece-global-pom</artifactId>
+        <groupId>fr.paris.lutece.tools</groupId>
+        <version>3.0.11</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>fr.paris.lutece.plugins</groupId>
+    <artifactId>module-form-date-validators</artifactId>
+    <packaging>lutece-plugin</packaging>
+    <version>1.1.2-SNAPSHOT</version>
+    <name>Lutece form date validators module</name>
+    <repositories>
         <repository>
-          <id>luteceSnapshot</id>
-          <name>luteceSnapshot</name>
-          <url>http://dev.lutece.paris.fr/snapshot_repository</url>
-          <snapshots>
-              <enabled>true</enabled>
-          </snapshots>
+            <id>luteceSnapshot</id>
+            <name>luteceSnapshot</name>
+            <url>http://dev.lutece.paris.fr/snapshot_repository</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
         <repository>
-          <id>lutece</id>
-          <name>luteceRepository</name>
-          <url>http://dev.lutece.paris.fr/maven_repository</url>
-          <snapshots>
-              <enabled>false</enabled>
-          </snapshots>
+            <id>lutece</id>
+            <name>luteceRepository</name>
+            <url>http://dev.lutece.paris.fr/maven_repository</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
-	
-	<dependencies>
-		<dependency>
-			<groupId>fr.paris.lutece.plugins</groupId>
-			<artifactId>plugin-form</artifactId>
-			<version>[4.1.6.alpha,)</version>
-			<type>lutece-plugin</type>
-		</dependency>
-	</dependencies>
-	
-	<properties>
-		<componentName>form-datevalidators</componentName>
-		<jiraProjectName>FORMDATEVALIDATORS</jiraProjectName>
-		<jiraComponentId>10364</jiraComponentId>
-	</properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>plugin-form</artifactId>
+            <version>[4.1.6.alpha,)</version>
+            <type>lutece-plugin</type>
+        </dependency>
+    </dependencies>
+    <properties>
+        <componentName>form-datevalidators</componentName>
+        <jiraProjectName>FORMDATEVALIDATORS</jiraProjectName>
+        <jiraComponentId>10364</jiraComponentId>
+    </properties>
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/directory-form-workflow/module-form-date-validators</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/directory-form-workflow/module-form-date-validators</developerConnection>
-        <url>http://dev.lutece.paris.fr/viewvc/lutece/portal/trunk/plugins/directory-form-workflow/module-form-date-validators</url>
+        <connection>scm:git:https://github.com/lutece-platform/lutece-form-module-form-date-validators.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-form-module-form-date-validators.git</developerConnection>
+        <url>https://github.com/lutece-platform/lutece-form-module-form-date-validators.git</url>
     </scm>
 </project>
