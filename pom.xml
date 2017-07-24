@@ -9,7 +9,7 @@
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>module-form-date-validators</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>1.1.2-SNAPSHOT</version>
+    <version>1.1.2</version>
     <name>Lutece form date validators module</name>
     <repositories>
         <repository>
@@ -46,5 +46,6 @@
         <connection>scm:git:https://github.com/lutece-platform/lutece-form-module-form-date-validators.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-platform/lutece-form-module-form-date-validators.git</developerConnection>
         <url>https://github.com/lutece-platform/lutece-form-module-form-date-validators.git</url>
-    </scm>
+      <tag>lutece-form-module-form-date-validators-1.1.2</tag>
+  </scm>
 </project>
