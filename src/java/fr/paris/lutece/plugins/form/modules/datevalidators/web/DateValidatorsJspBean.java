@@ -200,9 +200,9 @@ public class DateValidatorsJspBean extends FormJspBean
 
         Map<String, Object> model = new HashMap<String, Object>(  );
         model.put( DateValidatorsConstants.MARK_ID_FORM, nIdForm );
-        model.put( MARK_TYPE_ENTRY, DateValidatorsConstants.TYPE_ENTRY );
-        model.put( MARK_TYPE_DATE_REFERENCE, DateValidatorsConstants.TYPE_DATE_REFERENCE );
-        model.put( MARK_TYPE_DATE_CALCULATED, DateValidatorsConstants.TYPE_DATE_CALCULATED );
+        model.put( MARK_TYPE_ENTRY, String.valueOf( DateValidatorsConstants.TYPE_ENTRY ) );
+        model.put( MARK_TYPE_DATE_REFERENCE, String.valueOf( DateValidatorsConstants.TYPE_DATE_REFERENCE ) );
+        model.put( MARK_TYPE_DATE_CALCULATED, String.valueOf( DateValidatorsConstants.TYPE_DATE_CALCULATED ) );
 
         HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_SELECT_TYPE, getLocale(  ), model );
 
