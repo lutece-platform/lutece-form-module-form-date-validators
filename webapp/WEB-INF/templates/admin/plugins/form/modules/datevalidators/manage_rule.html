@@ -17,18 +17,18 @@
 
 <@row>
   <@columns>
-    <@box>
+    <@box >
 			<#assign title>
 				<@icon style='gavel' />
 				#i18n{module.form.datevalidators.manageRule.title}
 			</#assign>
-			<#if permission_create>
-				<#assign boxTools=true />
-			</#if>
-			<@boxHeader title=title boxTools=boxTools>
-				<@tform action='jsp/admin/plugins/form/modules/datevalidators/SelectType.jsp?id_form=${id_form}'>
-					<@button type='submit' buttonIcon='plus' title='#i18n{module.form.datevalidators.manageRule.buttonCreate}' showTitleXs=false size='' />
-				</@tform>
+			<@boxHeader title=title>
+				<#if permission_create>
+					<@aButton href='jsp/admin/plugins/form/modules/datevalidators/SelectType.jsp?id_form=${id_form}' buttonIcon='plus' title='#i18n{module.form.datevalidators.manageRule.buttonCreate}' showTitleXs=false size='' />
+				</#if>
+				<#if permission_manage>
+					<@aButton href='jsp/admin/plugins/form/modules/datevalidators/ManageDateCalculated.jsp?id_form=${id_form}' buttonIcon='calendar' title='#i18n{module.form.datevalidators.manageRule.buttonManageDateCalculated}'  showTitleXs=false size='' />
+				</#if>
 			</@boxHeader>
 			<@boxBody>
 				<@paginationAdmin paginator=paginator combo=1/>
