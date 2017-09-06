@@ -336,7 +336,7 @@ public class DateValidator extends Validator
                     Object[] messageArgs = { entry1.getTitle( ), entry2.getTitle( ) };
 
                     SiteMessageService.setMessage( request, comparator.getMessage( ), messageArgs,
-                            SiteMessage.TYPE_STOP );
+                            SiteMessage.TYPE_ERROR );
                 }
             }
             catch ( InstantiationException e )
@@ -397,7 +397,7 @@ public class DateValidator extends Validator
                     Object[] messageArgs = { entry.getTitle( ), strDateReference };
 
                     SiteMessageService.setMessage( request, comparator.getMessage( ), messageArgs,
-                            SiteMessage.TYPE_STOP );
+                            SiteMessage.TYPE_ERROR );
                 }
             }
             catch ( InstantiationException e )
@@ -518,7 +518,7 @@ public class DateValidator extends Validator
                     Object[] messageArgs = { entry.getTitle( ), strDateCalculated };
 
                     SiteMessageService.setMessage( request, comparator.getMessage( ), messageArgs,
-                            SiteMessage.TYPE_STOP );
+                            SiteMessage.TYPE_ERROR );
                 }
             }
             catch ( InstantiationException e )
